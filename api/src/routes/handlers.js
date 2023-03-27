@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {loadCountries, getCountriesByID, loadActivities} = require("./controllers");
+const {loadCountries, getCountriesByID} = require("./controllers");
 const { Country, Activity } = require("../db.js");
 const axios = require("axios");
 const {Op} = require ("sequelize")
@@ -62,7 +62,7 @@ const filterCountriesByID = async (req, res) => {
 // FILTRADO POR ACTIVIDADES
 
 const getActivities = async (req, res) => {
-  const activities = await loadActivities()
+  const activities = await Activity.findAll()
   try{
     activities.length
     res.status(200).send(activities);

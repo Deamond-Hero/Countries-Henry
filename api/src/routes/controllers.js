@@ -62,19 +62,18 @@ const countriesApi = async () => {
 // };
 
 //Cargamos datos del modelo activity recorriendo todos los paises de nuetra db
-const loadActivities = async () => {
-  await Country.findAll({
-    include: {
-      model: Activity,
-      atributtes: ["name", "dificuty", "duration", "season"],
-      through: { atributtes: [] },
-    },
-  });
-};
+// const loadActivities = async () => {
+//   await Country.findAll({
+//     include: {
+//       model: Activity,
+//       atributtes: ["name", "dificuty", "duration", "season"],
+//       through: { atributtes: [] },
+//     },
+//   });
+// };
 
 const loadCountries = async () => {
   await countriesApi();
-  await loadActivities();
 };
 
 // console.log(loadCountries)
@@ -104,5 +103,5 @@ module.exports = {
   countriesApi,
   loadCountries,
   getCountriesByID,
-  loadActivities,
+
 };
