@@ -1,10 +1,12 @@
 
 .cards{
-    border: 1px solid black;
     display: flex;
-    flex-direction: row;
-    border-radius: 15px;
-    flex-wrap: wrap;
-    gap: 1rem;
-    padding: 2rem;
+    flex-wrap:wrap;
+
+
+    justify-content: center;
+    align-items: center;
+
 }
+
+

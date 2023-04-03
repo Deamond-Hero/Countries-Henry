@@ -4,6 +4,10 @@
     justify-content: space-around;
     border: 2rem black;
     border-radius: 1rem;
-
+    background-color: grey;
+    padding: 1rem;
+    font-family: Roboto Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2rem;
+    text-decoration: underline;
 
 }

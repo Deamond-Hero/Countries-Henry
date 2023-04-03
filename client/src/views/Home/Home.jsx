@@ -2,6 +2,7 @@ import CardsContainer from "../../Components/CardsContainer/CardsContainer.jsx"
 import {useEffect} from "react";
 import {useDispatch} from "react-redux"
 import { getAllCoutries } from "../../redux/actions.js";
+import style from "./Home.module.css"
 
 
 
@@ -15,10 +16,11 @@ const Countries = () =>{
     },[dispatch])
 
 
+
     return(
-        <div>
-         <h1>Home</h1>
-         <CardsContainer></CardsContainer>
+        <div className={style.home}>
+      
+         <CardsContainer />
         </div>
     )
 }

@@ -1,7 +1,10 @@
+import style from "./Create.module.css"
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllActivities, getAllCoutries } from "../../redux/actions";
+import { createActivities, getAllActivities, getAllCoutries } from "../../redux/actions";
+import { useHistory } from "react-router-dom";
+
 
 const Create = () => {
   const [form, setForm] = useState({
@@ -9,8 +12,17 @@ const Create = () => {
     dificulty: "",
     duration: "",
     season: "",
-    countries: [],
+    countries:[]
+
   });
+
+
+  const [cardsCountries, setCardsCountries] = useState({
+    countries:[]
+  })
+
+
+  
 
   //creando función agregar paises
   //Selecciono el pais deseado y presiono en add
@@ -24,8 +36,8 @@ const Create = () => {
   //entonces cuando yo selecciono un pais, se deberia de ejecutar una función de busqueda
   //que me traiga el id del pais para poder crear la actividad.
 
-
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const allActivities = useSelector((state) => state.activities);
   const allCountries = useSelector((state) => state.countries);
@@ -38,8 +50,8 @@ const Create = () => {
     dispatch(getAllCoutries());
   }, [dispatch]);
 
-  console.log(allActivities);
-  console.log(allCountries);
+  // console.log(allActivities);
+  // console.log(allCountries);
 
   const chageHandler = (event) => {
     const property = event.target.name;
@@ -50,31 +62,59 @@ const Create = () => {
     setForm({ ...form, [property]: value });
   };
 
-  const onSearch = (input) => {
-    const searching = allCountries
-      .map((c) => c.name.toUpperCase())
-      .includes(input.toUpperCase());
-    if (!searching.length) return allCountries;
-    else return searching;
-    //la función debe alvergar un input que
-  };
+  const addCountrie = (event) =>{
 
-  const addCountrie = (event) => {
-    event.preventDefault();
-    const property = document.getElementById("countries").name;
-    const value = document.getElementById("countries").value;
+     setCardsCountries({countries: cardsCountries.countries.concat(allCountries.filter((c)=>{ return (c.id).includes(document.getElementById("countries").value)}))})
+   setForm({...form, countries:[...form.countries, document.getElementById('countries').value]})
+  }
 
-    console.log(property);
-    console.log(value);
+  console.log(cardsCountries)
 
-    // setForm({...form, [value]})
-  };
+
+   const onDelete= (event) =>{
+    if(cardsCountries.length)
+    event.preventDefault()
+    let del = cardsCountries.countries.filter((c) =>{return c.id !== event.target.value})
+    setCardsCountries({countries:del})
+    setForm({...form, countries : del.map(c=>c.id)})
+    console.log(event.target.value)
+    
+    // if(form.countries.length)
+    // setForm(form.countries.filter((c) =>c.id !== event.target.value ))
+    // console.log(event.target.value)
+
+    console.log(cardsCountries)
+  }
+
+  function handleSubmit (event){
+
+    event.preventDefault()
+
+    
+    dispatch(createActivities(form))
+
+    setForm({
+      name: '',
+      difficulty: '',
+      duration: '',
+      season: '',
+      countries: [],
+    })
+    history.push('./countries')
+    alert('activity Created!')
+  } 
+
+
+
+
+
 
   return (
-    <form>
+    <div className={style.createCountainer}>
+    <form onSubmit={(event)=>handleSubmit(event)} className={style.create}>
       <h1>Create Activities</h1>
 
-      <div>
+      <div className={style.component}>
         <label>Name: </label>
         <input
           type="text"
@@ -84,74 +124,90 @@ const Create = () => {
         />
       </div>
 
-      <div>
+      <div className={style.component}>
         <label>Dificulty: </label>
         <input
-          type="checkbox"
+          id="dificultActivitie"
+          type="range"
           value={form.dificulty}
           name="dificulty"
+          min="1"
+          max="5"
           onChange={chageHandler}
         />
+        <span id="dificulty">{form.dificulty}</span>
       </div>
 
-      <div>
+      <div className={style.component}>
         <label>Duration: </label>
         <input
-          type="text"
+          type="range"
           value={form.duration}
           name="duration"
+          min="1"
+          max="24"
           onChange={chageHandler}
         />
+        <span id="duration">{form.duration} hs</span>
       </div>
 
-      <div>
+      <div className={style.component}>
         <label>Season: </label>
-        <input
-          type="text"
+        <select
+          type="checkbox"
+          checked="checked"
           value={form.season}
           name="season"
           onChange={chageHandler}
-        />
+        >
+          <option>winter</option>
+          <option>summer</option>
+          <option>fall</option>
+          <option>spring</option>
+        </select>
       </div>
 
-      <div>
+      <div className={style.component}>
         <label>Countries: </label>
-        <select id="countries" name="countries" value={form.countries}
->
-          <option value={"default"} disabled>Select countries</option>
+        <select id="countries" name="countries">
           {allCountries.map((c) => {
             return (
-              <option key={c.id} value={c.id}>
+              <option  key={c.id} value={c.id}>
                 {c.name}
               </option>
             );
           })}
         </select>
-        <input
+        <button
           type="button"
           onClick={addCountrie}
           name="addCountry"
-          value="Add Countries"
-        />
+          value='add'
+        >add</button>
       </div>
 
-      <div>
+      <div className={style.component}>
         <label>Countries Add: </label>
-        <input type="text" value={form.countries} name="countries" />
-        <select name="countries">
-          {form.countries.map((c) => {
-            return <div value={c.id}> {c.name} </div>;
+        <div id="countries">
+          {cardsCountries.countries.map((c) => {
+            return (
+              <div key={c.id} id={c.id} value={c.id}>
+                <div>{c.name}</div>
+                <img src={c.imageFlag} alt="flag" />
+                <button name='adds' value={c.id} type='button' onClick={onDelete}>X</button>
+              </div>
+            );
           })}
-        </select>
-        <input type="button" onclick="deleteCountry()" value="Delete Country" />
+        </div>
       </div>
 
       {/* Posibilidad de seleccionar/agregar varios países en simultáneo. */}
 
-      <div>
+      <div className={style.submit}>
         <button type="Submit">Create activity!</button>
       </div>
     </form>
+    </div>
   );
 };
 

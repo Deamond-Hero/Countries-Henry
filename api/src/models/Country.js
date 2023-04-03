@@ -27,6 +27,7 @@ module.exports = (sequelize) => {
     },
     subRegion:{
       type: DataTypes.STRING,
+      defaultValue: null
 
  
 

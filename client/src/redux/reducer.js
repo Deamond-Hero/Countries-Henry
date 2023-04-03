@@ -1,13 +1,15 @@
 import {GET_ALL_COUNTRIES,
         GET_ALL_ACTIVITIES,
         COUNTRY_BY_ID,
+        SPLICE_PAGES
         }from './actions'
 
 
 const initialState = {
     countries :[],
     detail:[],
-    activities:[]
+    activities:[],
+    pages:[],
 
 }
 
@@ -21,6 +23,8 @@ const rootReducer = (state = initialState, action) => {
 
         case GET_ALL_ACTIVITIES:
             return {...state, activities : action.payload}
+        case SPLICE_PAGES:
+            return {...state, pages : action.payload}
 
   
             

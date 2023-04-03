@@ -1,8 +1,36 @@
 .card{
-    border: 1px solid black;
-    width: fit-content;
-    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(199, 199, 199);
+    width: 12%;
+    height: 100px;
+    height:100%;
     border-radius: 2rem;
-    padding: 2rem;
+    padding: 1rem;
+    margin: 1rem;
+    background-color: rgb(233, 233, 233);
+    cursor: default;
+    transition: all 400ms ease;
     
+}
+
+img{
+    width: 100%;
+}
+
+h1{
+    font-size: 1rem;
+
+}
+
+p{
+    font: 5rem;
+}
+
+
+
+.card:hover{
+    background-color: white;
+    box-shadow: 5px 5px 20px gray;
+    transform: translateY(-3%);
 }

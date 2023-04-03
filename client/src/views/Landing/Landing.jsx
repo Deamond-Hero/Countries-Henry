@@ -1,10 +1,10 @@
+import style from './Landing.module.css'
 
 const Landing = () =>{
     return(
-        <>
-         <h1>Landing</h1>
-         <a href="/countries"><button>Welcome</button></a>
-        </>
+        <div className={style.landing}>
+         <a href="/countries"><button className={style.button}>Welcome</button></a>
+        </div>
     )
 }
 

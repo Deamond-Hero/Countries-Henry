@@ -27,7 +27,9 @@ const Detail = () => {
       <p>Subregion: {props.Subregion}</p>
       <p>Area: {props.area}</p>
       <p>Population: {props.population}</p>
+      <input value='Back' type='button' onClick="history.back()"/>
     </div>
+
   );
 };
 

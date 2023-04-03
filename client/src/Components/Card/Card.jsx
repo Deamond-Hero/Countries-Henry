@@ -5,9 +5,9 @@ const Card = (props) =>{
         return(
             <div className={style.card}>
             <Link to={`/country/${props.id}`} >
-                <h1>Name:{props.name}</h1>
+                <h1>{props.name}</h1>
                 <img src={props.imageFlag} alt="no disponible"/>
-                <p>Continent:{props.continent}</p>
+                <p>Continent: {props.continent}</p>
             </Link>
             </div>
         ) 
