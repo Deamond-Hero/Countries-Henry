@@ -4,7 +4,7 @@ const { loadCountries } = require("./controllers");
 
 const getRouter = Router();
 
-getRouter.get("/", countriesDb);
+// getRouter.get("/", countriesDb);
 
 getRouter.get("/countries", getCountries);
 

@@ -1,18 +1,27 @@
 import axios from "axios";
 
 
+
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const COUNTRY_BY_ID = "COUNTRY_BY_ID";
+export const COUNTRY_BY_NAME = "COUNTRY_BY_NAME";
 export const GET_ALL_ACTIVITIES = "GET_ALL_ACTIVITIES";
 export const POST_ACTIVITIE = "POST_ACTIVITIE";
-export const SPLICE_PAGES = "SPLICE_PAGES"
+export const FILTER_BY_NAME = "FILTER_BY_NAME";
+export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT"
+export const FILTER_BY_ACTIVITIES = "FILTER_BY_ACTIVITIES"
+export const FILTER_BY_ALPH = "FILTER_BY_ALPH"
+export const FILTER_BY_POPULATION = "FILTER_BY_POPULATION"
+export const SORT = "SORT"
+
+// export const SPLICE_PAGES = "SPLICE_PAGES"
 
 
-export const getAllCoutries = () => {
+export const getAllCountries = () => {
     return async function(dispatch){
         const apiData = await axios.get('http://localhost:3001/countries');
-
         const countries = apiData.data;
+        console.log(countries)
         dispatch({type:GET_ALL_COUNTRIES, payload:countries})
     }
 }
@@ -22,6 +31,15 @@ export const countryById = (id)=>{
         const apiData = await axios.get(`http://localhost:3001/countries/${id}`)
         const countrie = apiData.data;
         dispatch({type:COUNTRY_BY_ID, payload:countrie})
+    }
+}
+
+
+export const countryByName = (name)=>{
+    return async function(dispatch){
+        const apiData = await axios.get(`http://localhost:3001/countries?name=${name}`)
+        const nameCountry = apiData.data;
+        dispatch({type:COUNTRY_BY_NAME, payload:nameCountry})
     }
 }
 
@@ -45,14 +63,27 @@ export const createActivities = (form) =>{
 }
 
 
-export const  splicePages = (firsIndex,idexPerPage) =>{
-    return async function(dispatch){
-        const countries = await axios.get('http://localhost:3001/countries')
-        console.log(countries)
-        const pages = countries.data.splice(firsIndex,idexPerPage)
-        console.log(pages)
-
-        dispatch({type:SPLICE_PAGES, payload:pages})
-    }
+export const filterByName = (payload) =>{
+    return{type:FILTER_BY_NAME, payload}    
 }
 
+export const filterByPopulation = (payload) =>{
+    return {type:FILTER_BY_POPULATION, payload}
+    }
+
+
+export const filterByActivities = (payload) =>{
+    return {type:FILTER_BY_ACTIVITIES, payload:payload}
+    }
+
+
+export const filterByContinent = (payload) =>{
+    return {type:FILTER_BY_CONTINENT, payload:payload}
+    
+}
+
+
+export const sort = (payload) =>{
+    return{type:SORT, payload:payload }
+        
+}

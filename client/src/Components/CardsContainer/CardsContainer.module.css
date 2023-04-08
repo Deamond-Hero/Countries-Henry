@@ -1,7 +1,13 @@
 
+a:link, a:visited, a:active {
+    text-decoration: none;
+}
+
 .cards{
     display: flex;
     flex-wrap:wrap;
+    padding: 2rem;
+
 
 
     justify-content: center;
@@ -10,3 +16,7 @@
 }
 
 
+
+.cards a:link, a:visited, a:active {
+    text-decoration: none;
+}

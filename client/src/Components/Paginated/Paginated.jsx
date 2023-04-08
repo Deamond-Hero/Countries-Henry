@@ -1,20 +1,32 @@
-import style from "./Paginated.module.css"
+import { useSelector } from "react-redux";
+import style from "./Paginated.module.css";
 
+const Paginated = (props) => {
+  const countries = useSelector((state) => state.countriesFilter);
 
-const Paginated = (props) =>{
-
-    return(
-    <div>
+  return (
+    <div className={style.PaginatedContainer}>
+      <div>
         <h1>{props.currentPage}</h1>
+      </div>
+      <div className={style.Pages}>
         <button onClick={props.prevHandler}>Prev</button>
+        {console.log(props.pageCountries)}
+        {props.totalPages.map((e) => {
+          return (
+            <button
+              onClick={props.actualPage}
+              value={props.totalPages.indexOf(e) + 1}
+            >
+              {props.totalPages.indexOf(e) + 1}
+            </button>
+          );
+        })}
+
         <button onClick={props.nextHandler}>Next</button>
-
+      </div>
     </div>
-    )
-
-}
-
-
-
+  );
+};
 
 export default Paginated;

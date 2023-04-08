@@ -9,17 +9,17 @@ const CC = [];
 
 const countriesApi = async () => {
   try {
-    let dataApi = await axios.get("https://restcountries.com/v3/all");
+    let dataApi = await axios.get('https://restcountries.com/v3/all');
     await dataApi.data.forEach((c) => {
-      Country.findOrCreate({
+       Country.findOrCreate({
         where: {
-          id: c.fifa === undefined ? c.cca3 : c.fifa,
+          id: c.cca3,
           name: c.name.common === undefined ? c.name.official : c.name.common,
           imageFlag: c.flags[0] ? c.flags[1] : c.flags[0],
           continent: c.continents[0],
-          capital: null ? "No capital" : capital[0],
-          subRegion: c.subregion,
+          capital: c.capital ? c.capital[0]  : "No capital",
           area: c.area,
+          subRegion : c.subregion ? c.subregion : "No Subregion",
           population: c.population,
         },
       });

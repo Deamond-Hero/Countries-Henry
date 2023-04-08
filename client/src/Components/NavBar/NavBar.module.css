@@ -1,13 +1,27 @@
-.navContainer{
-    display:flex;
-    flex-direction: row;
-    justify-content: space-around;
-    border: 2rem black;
-    border-radius: 1rem;
-    background-color: grey;
-    padding: 1rem;
-    font-family: Roboto Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 2rem;
-    text-decoration: underline;
+.NavContainer {
+  border-radius: 1rem;
+  background-color: rgba(128, 128, 128, 0.519);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  padding: 0;
 
+  text-decoration: none;
+}
+
+.info {
+  font-family: "Poppins", Bold;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.NavContainer a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
+.NavContainer VXE0i {
+  text-decoration: none;
 }

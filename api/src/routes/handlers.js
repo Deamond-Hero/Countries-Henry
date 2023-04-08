@@ -7,13 +7,10 @@ const { Op } = require("sequelize");
 //////////////////////////////////////////////////////////////////
 // Carga de paises a db
 
-const countriesDb = async (req, res) => {
-  try {
+const countriesDb = async () => {
     const countries = await loadCountries();
-    res.status(200).json("Loaded countries");
-  } catch {
-    res.status(400).send("There was a problem");
-  }
+      console.log("Loaded countries.");
+
 };
 
 //////////////////////////////////////////////////////////////////
@@ -32,18 +29,18 @@ const getCountries = async (req, res) => {
         "subRegion",
         "area",
         "population",
-      ],
+      ],include: Activity,
       where: {
         name: {
           [Op.iLike]: `%${name}%`,
         },
       },
-    });
+      });
     searchCountry.length
       ? res.status(200).send(searchCountry)
       : res.status(404).send("No results found");
   } else {
-    const allCountries = await Country.findAll();
+    const allCountries = await Country.findAll({include: Activity});
     allCountries.length
       ? res.status(200).send(allCountries)
       : res
@@ -82,6 +79,7 @@ const getActivities = async (req, res) => {
 // CREACIÓN DE ACTIVIDADES
 
 const createActivities = async (req,res) => {
+  try{
   const {countries, name, dificulty, duration, season } = req.body;
   if (!name || !dificulty || !countries || !season)
     res.status(404).send("Fill required fields.");
@@ -100,13 +98,16 @@ const createActivities = async (req,res) => {
     // console.log(newActivity);
     // console.log(countries);
 
-    Promise.all(countries.map(async (c) => {
-      await newActivity.setCountries(await Country.findByPk(c))
-
-      res.json(newActivity);
-
-    }));
-
+    Promise.all(countries.map(
+      async (c) => { await newActivity.setCountries(await Country.findByPk(c))
+   
+        
+      }));
+      
+    res.status(200).json(newActivity);
+  }catch{
+    res.status(400).send("Algo salio mal")
+  }
 
 
 };

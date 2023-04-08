@@ -1,0 +1,30 @@
+.PaginatedContainer{
+
+
+        align-content: center;
+        background-color: rgba(153, 153, 153, 0.364);
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        text-decoration:none;
+    
+    
+    }
+
+
+.PaginatedContainer h1{
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1%;
+
+
+    
+}
+
+.Pages{
+    display:flex;
+    text-decoration: none;
+    justify-content:center;
+    align-items: center;
+    border: 2rem black;
+    padding-bottom: 1%;
+}

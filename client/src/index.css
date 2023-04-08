@@ -1,11 +1,16 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
+
+
 html {
+  background-color: blue;
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -14,13 +19,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family:Verdana, Geneva, Tahoma, sans-serif ;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
+  font-family: "Poppins", sans-serif; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+a:link, a:visited, a:active{
+  text-decoration:none;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
