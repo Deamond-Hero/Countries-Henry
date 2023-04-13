@@ -41,7 +41,7 @@ const rootReducer = (state = initialState, action) => {
         const filteBycontinent =
         action.payload === 'All'
           ? state.countries
-          : state.countriesFilter.filter((c) => c.continent === action.payload)
+          : state.countries.filter((c) => c.continent === action.payload)
       return {
         ...state,
         countriesFilter: filteBycontinent,

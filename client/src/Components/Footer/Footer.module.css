@@ -1,4 +1,9 @@
 .Footer{
-    
-    background-color: grey
+    padding-top: 1rem;
+    margin: 0;
+    background-color: rgba(224, 221, 221, 0.638);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 80%;
+    font-weight: 700;
 }

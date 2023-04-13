@@ -1,27 +1,45 @@
 .NavContainer {
   border-radius: 1rem;
-  background-color: rgba(128, 128, 128, 0.519);
+  background-color: rgba(163, 11, 163, 0.8);
   margin-top: 0;
   margin-bottom: 0.5rem;
   padding: 0;
-
-  text-decoration: none;
+  color: white;
+  
 }
 
-.info {
+.NavContainer a {
+  color:rgb(255, 255, 255);
+  font-family: Poppins;
+  font-weight: 700;
+  padding: 0 3rem;
+
+
+}
+  
+  .NavContainer a:active {
+    background-color:white;
+    color: gray;
+    font-family: Poppins;
+    font-weight: 700;
+  
+  
+  }
+  
+  .NavContainer a:hover:not(.active) {background-color: #ddd;}
+  
+  .NavContainer a:visited{
+    text-decoration: none;
+  }
+
+.routes {
   font-family: "Poppins", Bold;
+  color: aquamarine;
   font-weight: 700;
   font-size: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.NavContainer a:link,
-a:visited,
-a:active {
-  text-decoration: none;
-}
 
-.NavContainer VXE0i {
-  text-decoration: none;
-}
+

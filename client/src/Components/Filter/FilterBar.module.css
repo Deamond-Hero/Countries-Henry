@@ -4,15 +4,46 @@
     flex-direction: row;
     justify-content:flex-end;
     border: 2rem black;
+    color: rgb(58, 57, 57);;
     border-radius: 1rem;
-    background-color: rgba(153, 153, 153, 0.364);
+    background-color: rgba(255, 255, 255, 0.691);
     padding: 1rem;
     font-family: 'Poppins', sans-serif;
+    font-weight: 700;
     font-size: 1rem;
     text-decoration:none;
 
 
 }
+
+.FilterBarContainer button{
+    display: inline-block;
+    font-family: Poppins;
+    background-color: rgba(163, 11, 163, 0.8);
+    color: white ;
+    opacity: 95%;
+    border-color: transparent;
+    border-radius: 0.5rem;
+
+    transition: all 0.5s;
+    cursor: pointer;
+
+    font-family: Poppins;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+
+  
+.FilterBarContainer button:hover{
+    font-family: Poppins;
+    background-color:white;
+    color: gray;
+    font-weight: 700;
+
+}
+  
+
 
 .FilterBarContainer div{
 

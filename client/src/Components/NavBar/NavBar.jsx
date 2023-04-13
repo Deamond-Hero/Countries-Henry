@@ -4,10 +4,10 @@ import style from "./NavBar.module.css";
 const NavBar = () => {
   return (
     <div className={style.NavContainer}>
-      <div className={style.info}>
+      <div className={style.routes}>
         <Link to="/">Landing</Link>
         <Link to="/countries">Countries</Link>
-        <Link to="/Create">Create</Link>
+        <Link to="/Create">Create Activity</Link>
       </div>
     </div>
   );

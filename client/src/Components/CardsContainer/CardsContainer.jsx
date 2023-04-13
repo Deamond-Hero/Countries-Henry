@@ -17,33 +17,38 @@ let FIRST_INDEX_PER_PAGE = 0;
 let SECOND_INDEX_PER_PAGE = 10;
 
 const CardsContainer = (props) => {
+  
   const dispatch = useDispatch();
 
+
   const sliceCountries = useSelector((state) => state.countriesFilter);
+
   useEffect(() => {
     dispatch(getAllCountries());
   }, [dispatch]);
 
-  console.log(sliceCountries);
-  const allCountries = useSelector((state) => state.countries);
-
+  
+  //////Funciones de paginado///
+  
   const [firstIndexPerPage, setFirstIndexPerPage] =
     useState(FIRST_INDEX_PER_PAGE);
 
   const [secondIndexPerPage, setSecondIndexPerPage] = useState(
     SECOND_INDEX_PER_PAGE
   );
-
+  
+ 
   const totalElements = sliceCountries.length;
 
   const totalPages = [];
 
- for (let index = 1; index < Math.ceil(totalElements/ 10) ; index++) {
+ for (let index = 1; index <= Math.ceil(totalElements/ 10)  ; index++) {
    totalPages.push(index)
   
  } 
 
-  console.log(totalPages)
+
+
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -78,25 +83,45 @@ const CardsContainer = (props) => {
 
   };
 
+  
   const actualPage = (event) => {
     event.preventDefault();
 
-    const selectfirstIndex = currentPage * 10 - 10;
 
-    const selectsecondIndex = selectfirstIndex + 10;
+    setCurrentPage(parseInt(event.target.value));
+
+    console.log(event.target.value)
+    
+    let selectfirstIndex = parseInt(event.target.value) * 10 - 10;
+
+    let selectsecondIndex = selectfirstIndex + 10;
+    console.log(currentPage)
+    console.log(selectfirstIndex)
+    console.log(selectsecondIndex)
 
     setFirstIndexPerPage(selectfirstIndex);
 
     setSecondIndexPerPage(selectsecondIndex);
 
-    setCurrentPage(parseInt(event.target.value));
-    console.log(event.target.value)
 
     console.log(currentPage)
   };
+  console.log(firstIndexPerPage)
+  console.log(secondIndexPerPage)
   console.log(currentPage)
 
+  useEffect(() => {
+    setFirstIndexPerPage(firstIndexPerPage)
+    setSecondIndexPerPage(secondIndexPerPage)
+  }, [currentPage]);
+
+
+
+  
+  
+
   const prevHandler = () => {
+
     const prevPage = currentPage - 1;
 
     const prevFirstIndex = firstIndexPerPage - 10;
@@ -116,26 +141,46 @@ const CardsContainer = (props) => {
 
   function nameHandler(event) {
     dispatch(filterByName(event.target.value));
+    setCurrentPage(1);
+    setFirstIndexPerPage(FIRST_INDEX_PER_PAGE);
+    setSecondIndexPerPage(SECOND_INDEX_PER_PAGE);
     console.log(event.target.value);
   }
 
   function activitiesHandler(event) {
     dispatch(filterByActivities(event.target.value));
+    setCurrentPage(1);
+    setFirstIndexPerPage(FIRST_INDEX_PER_PAGE);
+    setSecondIndexPerPage(SECOND_INDEX_PER_PAGE);
     console.log(event.target.value);
   }
 
   function continentHandler(event) {
     dispatch(filterByContinent(event.target.value));
-    console.log(event.target.value);
-  }
-
-  function orderHandler(event) {
-    dispatch(sort(event.target.value));
     setCurrentPage(1);
-
+    setFirstIndexPerPage(FIRST_INDEX_PER_PAGE);
+    setSecondIndexPerPage(SECOND_INDEX_PER_PAGE);
     console.log(event.target.value);
   }
-  console.log(pageCountries);
+
+  const [stateSort, setStateSort] = useState('')
+  
+
+  function orderHandler(event){
+    setStateSort(event.target.value)
+    setCurrentPage(1);
+    setFirstIndexPerPage(FIRST_INDEX_PER_PAGE);
+    setSecondIndexPerPage(SECOND_INDEX_PER_PAGE);
+
+  }
+  console.log(stateSort)
+
+    useEffect(()=>{
+     dispatch(sort(stateSort))
+  },[stateSort,dispatch])
+
+
+
 
   return (
     <div>

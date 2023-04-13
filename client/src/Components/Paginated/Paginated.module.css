@@ -10,18 +10,61 @@
     
     }
 
+    .PaginatedContainer button{
+        text-align: center;
+        font-family: Poppins;
+        font-size: 1rem;
+        background-color: rgba(163, 11, 163, 0.8);
+        color: white ;
+
+        border-color: none;
+        border: rgba(235, 234, 234, 0.624);
+        width: 3rem;
+        height: 2rem;
+
+        
+    }
+
+    .PaginatedContainer button:hover{
+        font-family: Poppins;
+        background-color:white;
+        color: gray;
+        font-weight: 700;
+        transition: all 0.5s;
+        cursor: pointer;
+
+    }
+    
+    .PaginatedContainer button:active{
+        font-family: Poppins;
+        background-color:white;
+        color: gray;
+        font-weight: 700;
+
+    }
+
+    .PaginatedContainer a:hover:not(.active) {background-color: #ddd;}
+
+
+    .prev button{
+        width:5rem ;
+    }
+
 
 .PaginatedContainer h1{
     align-items: center;
     text-align: center;
     margin-bottom: 1%;
-
-
-    
+    color:rgb(58, 57, 57);
+    font-weight: 700;
+   
 }
+
+
 
 .Pages{
     display:flex;
+    
     text-decoration: none;
     justify-content:center;
     align-items: center;

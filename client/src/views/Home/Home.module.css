@@ -1,6 +1,6 @@
 .Home{
 background-color: black;
-height: 100%;
+height: 100vh;
 background-image: url('../../Components/images/back.jpg');
 background-size: cover;
 width: 100%;

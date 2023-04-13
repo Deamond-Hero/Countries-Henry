@@ -81,13 +81,13 @@ const getActivities = async (req, res) => {
 const createActivities = async (req,res) => {
   try{
   const {countries, name, dificulty, duration, season } = req.body;
-  if (!name || !dificulty || !countries || !season)
-    res.status(404).send("Fill required fields.");
-  // console.log(countries);
-  // console.log(dificulty);
-  // console.log(duration);
-  // console.log(season);
-  // console.log(name);
+  if (name.length === 0 || dificulty.length === 0 || countries.length === 0 || season.length === 0){
+    res.status(404).send("Fill required fields.")};
+  console.log(countries);
+  console.log(dificulty);
+  console.log(duration);
+  console.log(season);
+  console.log(name);
 
     const newActivity = await Activity.create({
       name,
