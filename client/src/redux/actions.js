@@ -26,6 +26,17 @@ export const getAllCountries = () => {
     }
 }
 
+
+// export const getAllCountries = () => {
+
+//     return function(dispatch){
+//         fetch.get('http://localhost:3001/countries')
+//         .then(res => res.json())
+//         .then(result => {return dispatch({type:GET_ALL_COUNTRIES, payload:result})})
+        
+//     }
+// }
+
 export const countryById = (id)=>{
     return async function(dispatch){
         const apiData = await axios.get(`http://localhost:3001/countries/${id}`)
